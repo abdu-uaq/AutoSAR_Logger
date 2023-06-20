@@ -119,5 +119,6 @@ Contributions are welcome! If you find any bugs, have feature requests, or want 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Support
-For any questions or issues, please create an issue in the Issue Tracker.
+If you encounter any issues or have suggestions for improvements, please visit the [Issue Tracker](https://github.com/abdu-uaq/AutoSAR_Logger/issues) and create a new issue.
+
 
