@@ -1,4 +1,4 @@
-name: Build
+name: C Build
 
 on:
   push:
@@ -13,27 +13,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Set up Git repository
       uses: actions/checkout@v2
 
-    - name: Set up C++ toolchain
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
     - name: Install build dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential
+      run: sudo apt-get install -y build-essential
 
-    - name: Build project
-      run: make
+    - name: Build C code
+      run: make -C src/
 
     - name: Run tests
-      run: make test
+      run: make -C tests/
 
-    - name: Publish artifacts
+    - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: my-artifact
-        path: path/to/artifact  # Replace with the path to your build artifacts
+        name: build-artifacts
+        path: |
+          src/build/
+          tests/build/
