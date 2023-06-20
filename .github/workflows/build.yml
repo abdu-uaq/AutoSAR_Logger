@@ -1,4 +1,4 @@
-name: C Build
+name: C/C++ Build
 
 on:
   push:
@@ -13,22 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up Git repository
+    - name: Check Out Repository
       uses: actions/checkout@v2
 
-    - name: Install build dependencies
-      run: sudo apt-get install -y build-essential
-
-    - name: Build C code
-      run: make -C src/
-
-    - name: Run tests
-      run: make -C tests/
-
-    - name: Archive artifacts
-      uses: actions/upload-artifact@v2
+    - name: Set up C/C++ Compiler
+      uses: actions/setup-cpp@v2
       with:
-        name: build-artifacts
-        path: |
-          src/build/
-          tests/build/
+        cpp-version: '11'
+        compiler: 'gcc'
+
+    - name: Build
+      run: |
+        make -C examples
