@@ -19,10 +19,3 @@ jobs:
     - name: Build
       run: |
         make -C examples -f ../Makefile
-
-    - name: Display Build Output
-      uses: actions/github-script@v4
-      with:
-        script: |
-          const buildStatus = context.payload.workflow_run.status;
-          console.log(`Build Status: ${buildStatus}`);
