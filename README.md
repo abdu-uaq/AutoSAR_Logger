@@ -29,13 +29,17 @@ These instructions will help you get the AutoSAR_Logger project up and running o
 git clone https://github.com/abdu-uaq/autosar_logger.git
 ```
 
-2. Build the project using your preferred build tools:
+2. Navigate to the project directory:
 
 ```bash
 cd autosar_logger
+```
+3. Build the project using the provided Makefile:
+
+```bash
 make
 ```
-
+If you don't have Make installed, you can manually compile the source files using your preferred method.
 
 ## Usage
 
