@@ -1,27 +1,29 @@
+// autosar_logger.h
+
 #ifndef AUTOSAR_LOGGER_H
 #define AUTOSAR_LOGGER_H
 
-#include <stdio.h>
-#include <time.h>
+// Include necessary RTOS headers
+#include "cmsis_os2.h"
 
-// Log levels
+// Define the log levels
 typedef enum {
-    DEBUG,
-    INFO,
-    WARNING,
-    ERROR
+    LOG_LEVEL_ERROR,
+    LOG_LEVEL_WARNING,
+    LOG_LEVEL_INFO,
+    LOG_LEVEL_DEBUG
 } LogLevel;
 
 // Initialize the logger
 void loggerInit();
 
-// Enable file logging
-void enableFileLogging(const char* fileName);
+// Log a message with the specified level
+void logMessage(const char* message, LogLevel level);
+
+// Enable file logging with the specified filename
+void enableFileLogging(const char* filename);
 
 // Disable file logging
 void disableFileLogging();
-
-// Log a message
-void logMessage(const char* message, LogLevel level);
 
 #endif // AUTOSAR_LOGGER_H
