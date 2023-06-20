@@ -1,29 +1,27 @@
+# Makefile for AutoSAR_Logger project
+
 # Compiler and flags
-CC = gcc
-CFLAGS = -Wall -Werror
-
-# Include directories
-INCLUDE_DIRS = -I/path/to/cmsis_os2/include
-
-# Libraries
-LIBS = -L/path/to/cmsis_os2/lib -lcmsis_os2
+CC := gcc
+CFLAGS := -Wall -Wextra
 
 # Source files
-SRCS = main.c file1.c file2.c
-
-# Object files
-OBJS = $(SRCS:.c=.o)
+SRC_DIR := src
+EXAMPLES_DIR := examples
+SRCS := $(wildcard $(SRC_DIR)/*.c) $(wildcard $(EXAMPLES_DIR)/*.c)
+OBJS := $(SRCS:.c=.o)
 
 # Build target
-TARGET = app
+TARGET := app
+
+.PHONY: all clean
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDE_DIRS) $(LIBS) -o $@ $^
+	$(CC) $(CFLAGS) $^ -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDE_DIRS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(TARGET) $(OBJS)
