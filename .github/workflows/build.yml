@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up C++ environment
+        uses: actions/setup-cpp@v2
+        with:
+          compiler: 'gcc'  # Or 'clang' if you prefer
+
+      - name: Build with Make
+        run: make
+
+      - name: Run tests
+        run: make test  # Replace with your test command if applicable
+
+      - name: Publish artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: path/to/artifact  # Replace with the path to your build artifacts
