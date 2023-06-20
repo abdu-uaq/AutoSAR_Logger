@@ -20,15 +20,9 @@ jobs:
       run: |
         make -C examples -f ../Makefile
 
-    - name: Archive Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: artifacts
-        path: examples/app
-
     - name: Display Build Output
       uses: actions/github-script@v4
       with:
         script: |
-          const artifacts = context.payload.workflow_run.artifacts_url;
-          console.log(`Build artifacts are available for download at: ${artifacts}`);
+          const buildStatus = context.payload.workflow_run.status;
+          console.log(`Build Status: ${buildStatus}`);
