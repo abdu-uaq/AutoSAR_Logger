@@ -26,7 +26,7 @@ These instructions will help you get the AutoSAR_Logger project up and running o
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your_username/autosar_logger.git
+git clone https://github.com/abdu-uaq/autosar_logger.git
 ```
 
 2. Build the project using your preferred build tools:
