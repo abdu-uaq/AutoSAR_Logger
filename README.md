@@ -68,7 +68,7 @@ autosar_log_error("Error log message");
 6. When running your application, the log messages will be displayed in the console output or stored in a log file, depending on your configuration.
 
 
-###NUCLEO-G071RB Board
+### NUCLEO-G071RB Board
 If you are using the NUCLEO-G071RB board, follow these additional steps:
 
 1. Modify the board-specific initialization code in board_init.c to configure the necessary peripherals and pins specific to the NUCLEO-G071RB board.
@@ -81,7 +81,7 @@ make TARGET=NUCLEO_G071RB
 
 3. Flash the generated binary onto the NUCLEO-G071RB board.
 
-###Other Boards
+### Other Boards
 For other target boards, follow these steps:
 
 1. Modify the board-specific initialization code in board_init.c to configure the necessary peripherals and pins specific to your target board.
@@ -96,7 +96,7 @@ For other target boards, follow these steps:
 
 3. Flash the generated binary onto your target board.
 
-##Contributing
+## Contributing
 Contributions are welcome! If you find any bugs, have feature requests, or want to contribute to the project, please follow the guidelines below:
 
 1. Fork the repository.
@@ -105,9 +105,9 @@ Contributions are welcome! If you find any bugs, have feature requests, or want 
 4. Push the changes to your fork.
 5. Submit a pull request.
 
-##License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-##Support
+## Support
 For any questions or issues, please create an issue in the Issue Tracker.
 
