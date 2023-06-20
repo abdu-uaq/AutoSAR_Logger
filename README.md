@@ -29,11 +29,11 @@ AutoSAR_Logger is an open-source logging library for embedded systems based on t
 
 2. Include the necessary files in your project:
 
-- 'src/autosar_logger.c': Implementation of the AutoSAR_Logger library
-- 'src/autosar_logger.h': Header file for the AutoSAR_Logger library
-- 'examples/board_init.c': Board-specific initialization code
-- 'examples/board_init.h': Header file for the board-specific initialization code
-- 'examples/main.c': Example application demonstrating the usage of AutoSAR_Logger
+   - 'src/autosar_logger.c': Implementation of the AutoSAR_Logger library
+   - 'src/autosar_logger.h': Header file for the AutoSAR_Logger library
+   - 'examples/board_init.c': Board-specific initialization code
+   - 'examples/board_init.h': Header file for the board-specific initialization code
+   - 'examples/main.c': Example application demonstrating the usage of AutoSAR_Logger
 
 3. Configure the logger settings in 'autosar_logger.h' according to your requirements.
 
@@ -46,9 +46,9 @@ The AutoSAR_Logger library is designed to be compatible with a wide range of boa
 
 The following boards are officially supported:
 
-- NUCLEO-F401RE
-- NUCLEO-L476RG
-- NUCLEO-G071RB
+   - NUCLEO-F401RE
+   - NUCLEO-L476RG
+   - NUCLEO-G071RB
 
 For other boards, you may need to modify the board-specific initialization code in 'board_init.c' to match your board's configuration.
 
