@@ -57,7 +57,7 @@ For other boards, you may need to modify the board-specific initialization code 
 AutoSAR_Logger can be used with or without an RTOS. If you are using an RTOS, make sure to include the necessary RTOS headers and configure the logger to work with your RTOS of choice. The example code provided assumes usage with an RTOS.
 
 ## Contributing
-Contributions to AutoSAR_Logger are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue on the[issue tracker](https://github.com/abdu-uaq/AutoSAR_Logger/issues).
+Contributions to AutoSAR_Logger are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue on the [issue tracker](https://github.com/abdu-uaq/AutoSAR_Logger/issues).
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
