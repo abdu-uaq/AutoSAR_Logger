@@ -1,3 +1,4 @@
+
 # AutoSAR_Logger
 
 AutoSAR_Logger is an open-source logging library for embedded systems based on the AUTOSAR standard. It provides a flexible and configurable logging framework that can be easily integrated into AUTOSAR projects.
