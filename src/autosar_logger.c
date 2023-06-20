@@ -60,3 +60,7 @@ void logMessage(const char* message, LogLevel level) {
     
     // Log to file if file logging is enabled
     if (fileLoggingEnabled && logFile != NULL) {
+        fprintf(logFile, "[%s] [%s] %s\n", timestamp, levelToString(level), message);
+        fflush(logFile);
+    }
+}
