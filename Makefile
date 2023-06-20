@@ -1,27 +1,25 @@
-# Makefile for AutoSAR_Logger project
-
-# Compiler and flags
 CC := gcc
-CFLAGS := -Wall -Wextra
+CFLAGS := -Wall -Wextra -O2
+LDFLAGS :=
 
-# Source files
 SRC_DIR := src
 EXAMPLES_DIR := examples
-SRCS := $(wildcard $(SRC_DIR)/*.c) $(wildcard $(EXAMPLES_DIR)/*.c)
-OBJS := $(SRCS:.c=.o)
 
-# Build target
-TARGET := app
+SRC_FILES := $(wildcard $(SRC_DIR)/*.c)
+OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(SRC_DIR)/%.o, $(SRC_FILES))
+
+EXAMPLE_FILES := $(wildcard $(EXAMPLES_DIR)/*.c)
+EXAMPLE_TARGETS := $(patsubst $(EXAMPLES_DIR)/%.c, $(EXAMPLES_DIR)/%, $(EXAMPLE_FILES))
 
 .PHONY: all clean
 
-all: $(TARGET)
+all: $(EXAMPLE_TARGETS)
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+$(EXAMPLES_DIR)/%: $(EXAMPLES_DIR)/%.c $(OBJ_FILES)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $< $(OBJ_FILES)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(TARGET) $(OBJS)
+	rm -f $(OBJ_FILES) $(EXAMPLE_TARGETS)
