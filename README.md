@@ -1,124 +1,87 @@
 # AutoSAR_Logger
 
-AutoSAR_Logger is an open-source project aimed at providing a solution for AUTOSAR-related concepts. It offers a template codebase that can be used as a starting point for developing AUTOSAR applications. The project focuses on enhancing embedded engineering skills and creating open-source solutions for the AUTOSAR industry.
+AutoSAR_Logger is an open-source logging library for AUTOSAR-based embedded systems. It provides a simple and configurable logging mechanism with support for different log levels and file logging. This library is designed to be portable and compatible with various boards and Real-Time Operating Systems (RTOS).
 
 ## Features
 
-- Board initialization and peripheral configuration
-- Pin control for GPIO and other peripherals
-- Event logging with different severity levels
-- Cross-platform compatibility
-- Easily customizable for different target boards
-
-## Getting Started
-
-These instructions will help you get the AutoSAR_Logger project up and running on your local machine.
-
-### Prerequisites
-
-- Embedded C programming knowledge
-- C Compiler (e.g., GCC, ARM Compiler)
-- Build Tools (e.g., Make, CMake)
-- AUTOSAR Event Manager library
-
-### Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/abdu-uaq/autosar_logger.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd autosar_logger
-```
-3. Build the project using the provided Makefile:
-
-```bash
-make
-```
-If you don't have Make installed, you can manually compile the source files using your preferred method.
+- Configurable log levels: Error, Warning, Info, Debug
+- Thread-safe logging with a mutex
+- Optional file logging to record log messages to a file
+- Support for different boards and RTOS
 
 ## Usage
 
-To use AutoSAR_Logger, follow these steps:
+### Prerequisites
 
-1. Customize the codebase for your specific target board by modifying the relevant sections in the code, such as board initialization and pin control.
+- C compiler
+- (Optional) Real-Time Operating System (RTOS) library
 
-2. Build the project and flash the generated binary onto your target board.
+### Integration
 
-3. Include the necessary header files in your application code:
+1. Clone the AutoSAR_Logger repository:
+
+git clone https://github.com/abdu-uaq/AutoSAR_Logger.git
+
+
+2. Include the necessary files in your project:
+
+- `src/autosar_logger.c`: Contains the implementation of the AutoSAR_Logger library.
+- `src/autosar_logger.h`: Contains the header file for the AutoSAR_Logger library.
+- `examples/main.c`: An example application that demonstrates the usage of AutoSAR_Logger.
+- `examples/board_init.c`: Board-specific initialization code.
+
+3. Include the `autosar_logger.h` header in your application code:
 
 ```c
 #include "autosar_logger.h"
 ```
-
-4. Initialize the AutoSAR_Logger library in your application's initialization code:
-
-```c
-autosar_logger_init();
-```
-
-5. Use the logging functions provided by AutoSAR_Logger to log events with different severity levels. For example:
+4. Initialize the logger and use the logging functions in your code:
 
 ```c
-autosar_log_info("Informational log message");
-autosar_log_warning("Warning log message");
-autosar_log_error("Error log message");
+int main() {
+    // Initialize the logger
+    loggerInit();
+
+    // Log messages at different levels
+    logMessage("Error message", LOG_LEVEL_ERROR);
+    logMessage("Warning message", LOG_LEVEL_WARNING);
+    logMessage("Info message", LOG_LEVEL_INFO);
+    logMessage("Debug message", LOG_LEVEL_DEBUG);
+
+    // Enable file logging
+    enableFileLogging("log.txt");
+
+    // Log more messages
+    logMessage("Logging to file: Message 1", LOG_LEVEL_INFO);
+    logMessage("Logging to file: Message 2", LOG_LEVEL_INFO);
+
+    // Disable file logging
+    disableFileLogging();
+
+    // Cleanup and shutdown
+    // ...
+
+    return 0;
+}
 ```
 
-6. When running your application, the log messages will be displayed in the console output or stored in a log file, depending on your configuration.
+## Board and RTOS Compatibility
+The AutoSAR_Logger library is designed to be compatible with various boards and Real-Time Operating Systems (RTOS). To make it work with your specific board and RTOS, you need to perform the following steps:
 
-## Supported Boards
-The AutoSAR_Logger library is compatible with a wide range of boards. However, specific board configurations and initialization may be required. Currently, the following boards have been tested:
+1. Board Compatibility: Implement the board-specific initialization code in 'examples/board_init.c'. This code should set up the necessary peripherals and configurations specific to your board.
 
-- NUCLEO-G071RB
+2. RTOS Compatibility: If you are using an RTOS, make sure to include the appropriate RTOS headers and configure the necessary settings to ensure thread safety and synchronization. Update the 'autosar_logger.h' and 'autosar_logger.c' files to use the mutex or synchronization primitives provided by your RTOS.
 
-Please refer to the board-specific documentation or make appropriate modifications in the 'board_init.c' file for your target board.
-
-### NUCLEO-G071RB Board
-If you are using the NUCLEO-G071RB board, follow these additional steps:
-
-1. Modify the board-specific initialization code in board_init.c to configure the necessary peripherals and pins specific to the NUCLEO-G071RB board.
-
-2. Build the project using your preferred build tools, specifying the NUCLEO-G071RB board as the target:
+## Building and Running
+To build the example application, you can use the provided Makefile. Make sure you have a compatible C compiler and, if needed, the necessary RTOS library installed. Run the following command:
 
 ```bash
-make TARGET=NUCLEO_G071RB
+make
 ```
-
-3. Flash the generated binary onto the NUCLEO-G071RB board.
-
-### Other Boards
-For other target boards, follow these steps:
-
-1. Modify the board-specific initialization code in board_init.c to configure the necessary peripherals and pins specific to your target board.
-
-2. Build the project using your preferred build tools, specifying the appropriate board as the target. 
-   For example:
-   
-   ```bash
-   make TARGET=MY_TARGET_BOARD
-   ```
-   Replace MY_TARGET_BOARD with the name or identifier of your target board.
-
-3. Flash the generated binary onto your target board.
-
-## Contributing
-Contributions are welcome! If you find any bugs, have feature requests, or want to contribute to the project, please follow the guidelines below:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them.
-4. Push the changes to your fork.
-5. Submit a pull request.
+This will compile the source files and generate an executable named autosar_logger_example.
 
 ## License
-This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
+This project is licensed under the [MIT License](LICENSE).
 
-## Support
-If you encounter any issues or have suggestions for improvements, please visit the [Issue Tracker](https://github.com/abdu-uaq/AutoSAR_Logger/issues) and create a new issue.
-
-
+## Issue Tracker
+For bug reports, feature requests, or any other issues, please visit the [issue tracker](https://github.com/abdu-uaq/AutoSAR_Logger/issues).
