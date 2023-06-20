@@ -4,6 +4,7 @@
 #define AUTOSAR_LOGGER_H
 
 // Include necessary RTOS headers
+#include "cmsis_os2.h
 
 // Define the log levels
 typedef enum {
