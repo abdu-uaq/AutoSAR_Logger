@@ -1,6 +1,7 @@
 // autosar_logger.c
 
 #include "autosar_logger.h"
+#include "cmsis_os2.h"
 
 // Define a mutex for thread-safety
 osMutexId_t logMutex;
