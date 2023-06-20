@@ -1,27 +1,22 @@
-# Makefile for AutoSAR_Logger
+# Makefile
 
-# Compiler
-CC := gcc
+TARGET = autosar_logger_example
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c11
+LDFLAGS = -pthread
 
-# Compiler flags
-CFLAGS := -Wall -Werror
+SRCS = src/autosar_logger.c examples/main.c examples/board_init.c
+OBJS = $(SRCS:.c=.o)
 
-# Source files
-SRCS := src/autosar_logger.c examples/main.c
+.PHONY: all clean
 
-# Object files
-OBJS := $(SRCS:.c=.o)
-
-# Executable
-TARGET := autosar_logger_example
-
-# Default target
 all: $(TARGET)
 
-# Build target
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
-# Clean
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
 clean:
 	rm -f $(OBJS) $(TARGET)
