@@ -13,22 +13,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up C++ environment
-        uses: actions/setup-cpp@main
-        with:
-          compiler: 'gcc'  # Or 'clang' if you prefer
+    - name: Set up C++ toolchain
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
 
-      - name: Build with Make
-        run: make
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
 
-      - name: Run tests
-        run: make test  # Replace with your test command if applicable
+    - name: Build project
+      run: make
 
-      - name: Publish artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: path/to/artifact  # Replace with the path to your build artifacts
+    - name: Run tests
+      run: make test
+
+    - name: Publish artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: path/to/artifact  # Replace with the path to your build artifacts
