@@ -1,16 +1,27 @@
 #ifndef AUTOSAR_LOGGER_H
 #define AUTOSAR_LOGGER_H
 
-// Initialize the AutoSAR Logger
-void autosar_logger_init();
+#include <stdio.h>
+#include <time.h>
 
-// Log an informational message
-void autosar_log_info(const char* message, ...);
+// Log levels
+typedef enum {
+    DEBUG,
+    INFO,
+    WARNING,
+    ERROR
+} LogLevel;
 
-// Log a warning message
-void autosar_log_warning(const char* message, ...);
+// Initialize the logger
+void loggerInit();
 
-// Log an error message
-void autosar_log_error(const char* message, ...);
+// Enable file logging
+void enableFileLogging(const char* fileName);
 
-#endif  // AUTOSAR_LOGGER_H
+// Disable file logging
+void disableFileLogging();
+
+// Log a message
+void logMessage(const char* message, LogLevel level);
+
+#endif // AUTOSAR_LOGGER_H
