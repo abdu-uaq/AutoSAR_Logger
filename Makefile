@@ -1,20 +1,27 @@
-# Compiler options
-CC = gcc
-CFLAGS = -Wall -Wextra -std=c99
+# Makefile for AutoSAR_Logger
 
-# File names
-SRC = autosar_logger.c main.c board_init.c
-OBJ = $(SRC:.c=.o)
-EXECUTABLE = autosar_logger
+# Compiler
+CC := gcc
 
-# Build rule
-$(EXECUTABLE): $(OBJ)
-    $(CC) $(CFLAGS) -o $(EXECUTABLE) $(OBJ)
+# Compiler flags
+CFLAGS := -Wall -Werror
 
-# Compile rule
-%.o: %.c
-    $(CC) $(CFLAGS) -c $< -o $@
+# Source files
+SRCS := src/autosar_logger.c examples/main.c
 
-# Clean rule
+# Object files
+OBJS := $(SRCS:.c=.o)
+
+# Executable
+TARGET := autosar_logger_example
+
+# Default target
+all: $(TARGET)
+
+# Build target
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) $^ -o $@
+
+# Clean
 clean:
-    rm -f $(OBJ) $(EXECUTABLE)
+	rm -f $(OBJS) $(TARGET)
