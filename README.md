@@ -67,6 +67,12 @@ autosar_log_error("Error log message");
 
 6. When running your application, the log messages will be displayed in the console output or stored in a log file, depending on your configuration.
 
+## Supported Boards
+The AutoSAR_Logger library is compatible with a wide range of boards. However, specific board configurations and initialization may be required. Currently, the following boards have been tested:
+
+- NUCLEO-G071RB
+
+Please refer to the board-specific documentation or make appropriate modifications in the 'board_init.c' file for your target board.
 
 ### NUCLEO-G071RB Board
 If you are using the NUCLEO-G071RB board, follow these additional steps:
